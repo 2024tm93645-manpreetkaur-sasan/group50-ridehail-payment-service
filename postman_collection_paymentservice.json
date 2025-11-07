@@ -1,0 +1,7 @@
+{
+  "info": {"name":"Payment Service"},
+  "item":[
+    {"name":"List payments","request":{"method":"GET","url":"http://localhost:4100/api/v1/payments"}},
+    {"name":"Create","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\"paymentId\":\"P100\",\"tripId\":\"T100\",\"amount\":100.0,\"method\":\"CARD\"}"},"url":"http://localhost:4100/api/v1/payments/charge"}}
+  ]
+}
