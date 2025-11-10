@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "Payment Service API",
+    "_postman_id": "a12b5c09-fd8c-4c39-9e97-payment-service",
+    "description": "Postman collection for Payment Service running on localhost:9083",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Charge Payment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"trip_id\": 1,\n  \"amount\": 250,\n  \"method\": \"CARD\",\n  \"reference\": \"REF123\",\n  \"status\": \"COMPLETED\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:9083/v1/payments/charge",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9083",
+          "path": ["v1", "payments", "charge"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Refund Payment",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9083/v1/payments/{{payment_id}}/refund",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9083",
+          "path": ["v1", "payments", "{{payment_id}}", "refund"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Payment By Trip ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:9083/v1/payments/trip/{{trip_id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9083",
+          "path": ["v1", "payments", "trip", "{{trip_id}}"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "trip_id",
+      "value": "1"
+    },
+    {
+      "key": "payment_id",
+      "value": "1"
+    }
+  ]
+}
