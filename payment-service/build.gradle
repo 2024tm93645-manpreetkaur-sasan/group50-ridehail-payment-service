@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.1'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.rhf'
+version = '0.0.1'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Metrics + Prometheus
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+
+    // Rate limiting
+    implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.2.0'
+    implementation 'io.github.resilience4j:resilience4j-micrometer:2.2.0'
+
+    // Postgres driver
+    runtimeOnly 'org.postgresql:postgresql:42.7.3'
+
+    // JSON logging
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.4'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += ['-Xlint:deprecation','-Xlint:unchecked']
+}

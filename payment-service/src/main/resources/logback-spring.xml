@@ -1,0 +1,31 @@
+<configuration>
+  <appender name="JSON_FILE" class="ch.qos.logback.core.FileAppender">
+    <file>/app/payment-logs/payment-service.json</file>
+    <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+      <providers>
+        <timestamp/>
+        <pattern fieldName="level" pattern="%level"/>
+        <pattern fieldName="logger" pattern="%logger"/>
+        <mdc/>
+        <message/>
+        <arguments/>
+      </providers>
+    </encoder>
+  </appender>
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+      <providers>
+        <timestamp/>
+        <pattern fieldName="level" pattern="%level"/>
+        <mdc/>
+        <message/>
+      </providers>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="JSON_FILE"/>
+  </root>
+</configuration>
